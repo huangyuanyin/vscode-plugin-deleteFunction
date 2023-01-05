@@ -1,26 +1,26 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
+import { getFunctionNode } from "./main";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  vscode.commands.registerCommand("vscode-plugin-deleteFunction.helloWorld", () => {
+    vscode.window.showInformationMessage("这是我的第一个 vscode 插件!");
+  });
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vscode-plugin-deleteFunction" is now active!');
+  // vscode 中 应该如何删除一个字符
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) return;
+  // 算法 业务逻辑
+  const code = editor.document.getText(); // 拿到光标所在的内容
+  const index = editor.document.offsetAt(editor.selection.active); // 拿到光标所在索引
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('vscode-plugin-deleteFunction.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from vscode-plugin-deleteFunction!');
-	});
+  const functionNode = getFunctionNode(code, index);
 
-	context.subscriptions.push(disposable);
+  if (!functionNode) return;
+
+  // vscode UI
+  editor?.edit((editBuilder) => {
+    editBuilder.delete(new vscode.Range(new vscode.Position(functionNode.start.line - 1, functionNode.start.column), new vscode.Position(functionNode.end.line - 1, functionNode.end.column)));
+  });
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
