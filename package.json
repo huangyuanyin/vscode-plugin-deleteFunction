@@ -1,11 +1,28 @@
 {
   "name": "deleteFunction",
-  "displayName": "vscode-plugin-deleteFunction",
+  "displayName": "Delete Function",
   "description": "quick delete function",
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.74.0"
   },
+  "author": "黄原寅 <3443718488.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huangyuanyin/vscode-plugin-deleteFunction.git"
+  },
+  "homepage": "https://github.com/huangyuanyin/vscode-plugin-deleteFunction",
+  "bugs": "https://github.com/huangyuanyin/vscode-plugin-deleteFunction/issues",
+  "keywords": [
+    "refactor",
+    "javascript",
+    "typescript",
+    "delete",
+    "function",
+    "deleteFunction",
+    "delete function"
+  ],
   "categories": [
     "Other"
   ],
@@ -17,7 +34,15 @@
     "commands": [
       {
         "command": "vscode-extension.deleteFunction",
+        "category": "DeleteFunction",
         "title": "deleteFunction"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vscode-extension.deleteFunction",
+        "key": "ctrl+delete",
+        "mac": "cmd+R F"
       }
     ]
   },
