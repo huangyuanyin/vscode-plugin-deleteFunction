@@ -1,8 +1,8 @@
 {
-  "name": "vscode-plugin-deleteFunction",
+  "name": "deleteFunction",
   "displayName": "vscode-plugin-deleteFunction",
-  "description": "",
-  "version": "0.0.1",
+  "description": "quick delete function",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -10,17 +10,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-plugin-deleteFunction.helloWorld"
+    "onCommand:vscode-extension.deleteFunction"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-plugin-deleteFunction.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-extension.deleteFunction",
+        "title": "deleteFunction"
       }
     ]
   },
+  "publisher": "huangyuanyin",
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
