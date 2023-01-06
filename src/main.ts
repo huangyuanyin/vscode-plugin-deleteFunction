@@ -18,7 +18,6 @@ export function getFunctionNode(code: string, index: number): FunctionNode | und
   let functionNode; // 创建节点
 
   const ast = parse(code); // 生成 ast
-  // console.log("ast", ast);
 
   traverse(ast, {
     FunctionDeclaration(path: any) {
@@ -30,6 +29,26 @@ export function getFunctionNode(code: string, index: number): FunctionNode | und
           start: path.node?.loc?.start,
           end: path.node?.loc?.end,
         };
+      }
+    },
+
+    ArrowFunctionExpression(path: any) {
+      const variableDeclarationPath = path.parentPath.parentPath;
+
+      function getName() {
+        return Object.keys(path.parentPath.getBindingIdentifiers())[0];
+      }
+
+      if (variableDeclarationPath?.isVariableDeclaration()) {
+        {
+          if (index >= variableDeclarationPath.node?.start! && index <= variableDeclarationPath.node?.end!) {
+            functionNode = {
+              name: getName(),
+              start: variableDeclarationPath.node?.loc?.start,
+              end: variableDeclarationPath.node?.loc?.end,
+            };
+          }
+        }
       }
     },
   });

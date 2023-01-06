@@ -3,7 +3,7 @@ import { getFunctionNode } from "./main";
 
 export function activate(context: vscode.ExtensionContext) {
   vscode.commands.registerCommand("vscode-plugin-deleteFunction.helloWorld", () => {
-    vscode.window.showInformationMessage("这是我的第一个 vscode 插件!");
+    vscode.window.showInformationMessage("删除成功!");
   });
 
   // vscode 中 应该如何删除一个字符
