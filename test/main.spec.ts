@@ -21,3 +21,23 @@ test("init", () => {
   });
   // expect(true).toBe(true);
 });
+
+test.only("ArrowFunctionExpression", () => {
+  const code = `
+    const getName = () => "heihei"
+    const setName = () => "heihei"
+  `;
+
+  const index = 10; // 光标所在的位置
+
+  const functionNode = getFunctionNode(code, index);
+
+  // 测试驱动开发
+  // 第一步：写测试。在测试里描述这个测试Api的输入输出是什么样的。
+  expect(functionNode).toEqual({
+    name: "getName",
+    start: { line: 2, column: 4, index: 5 },
+    end: { line: 2, column: 34, index: 35 },
+  });
+  // expect(true).toBe(true);
+});
