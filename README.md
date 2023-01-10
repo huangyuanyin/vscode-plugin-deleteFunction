@@ -19,3 +19,9 @@ A simple vsCode plugin for quickly removing const and function function code blo
 - default shortcut
   - mac："cmd + r + f"
   - win："ctrl + r + f"
+
+## Notice
+
+![](resources/problem.png)
+
+If this error occurs after using commands or shortcut keys, it may be that your version of VS Code is too low. Please try to upgrade the version and try again.
